@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
-// Padrão Singleton — gerencia todas as notificações do sistema
 public class NotificacaoService {
     private static NotificacaoService instancia;
     private NotificacaoRepository notificacaoRepository;

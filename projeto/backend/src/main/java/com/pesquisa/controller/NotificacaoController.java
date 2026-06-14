@@ -23,11 +23,9 @@ public class NotificacaoController implements HttpHandler {
             String method = ex.getRequestMethod();
             String[] parts = HttpUtil.pathParts(ex);
 
-            // GET /api/notificacoes/{usuarioId}
             if ("GET".equals(method) && parts.length == 3) {
                 HttpUtil.responder(ex, 200, service.listarNotificacoes(parts[2]));
             }
-            // POST /api/notificacoes/{usuarioId}/lidas
             else if ("POST".equals(method) && parts.length == 4 && "lidas".equals(parts[3])) {
                 service.marcarTodasComoLidas(parts[2]);
                 HttpUtil.responder(ex, 200, Map.of("msg", "Notificações marcadas como lidas."));
