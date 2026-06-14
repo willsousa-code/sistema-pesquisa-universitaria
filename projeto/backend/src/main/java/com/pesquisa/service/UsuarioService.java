@@ -18,7 +18,7 @@ public class UsuarioService {
     }
 
     public Usuario cadastrar(String tipo, String nome, String email, String senha,
-                              String extra1, String extra2) {
+            String extra1, String extra2) {
         if (repository.existeEmail(email)) {
             throw new SistemaException("E-mail já cadastrado.", 400);
         }
@@ -42,11 +42,21 @@ public class UsuarioService {
     }
 
     public Usuario login(String email, String senha) {
+        System.out.println("=== LOGIN DEBUG ===");
+        System.out.println("Email: " + email);
+        System.out.println("Senha recebida: " + senha);
+
         Optional<Usuario> opt = repository.buscarPorEmail(email);
+        System.out.println("Usuário encontrado: " + opt.isPresent());
+
         if (opt.isEmpty()) {
             throw new SistemaException("Credenciais inválidas.", 401);
         }
         Usuario u = opt.get();
+        System.out.println("Senha no banco: " + u.getSenha());
+        System.out.println("Tipo: " + u.getTipo());
+        System.out.println("Ativo: " + u.isAtivo());
+
         if (u.getSenha() == null || !senha.equals(u.getSenha())) {
             throw new SistemaException("Credenciais inválidas.", 401);
         }
@@ -61,7 +71,7 @@ public class UsuarioService {
 
     public Usuario buscarPorId(String id) {
         return repository.buscarPorId(id)
-            .orElseThrow(UsuarioNaoEncontradoException::new);
+                .orElseThrow(UsuarioNaoEncontradoException::new);
     }
 
     public List<Usuario> listarTodos() {
@@ -70,7 +80,8 @@ public class UsuarioService {
 
     public Usuario ativarDesativar(String coordenadorId, String usuarioId) {
         Usuario coord = buscarPorId(coordenadorId);
-        if (!"COORDENADOR".equals(coord.getTipo())) throw new AcessoNegadoException();
+        if (!"COORDENADOR".equals(coord.getTipo()))
+            throw new AcessoNegadoException();
         Usuario alvo = buscarPorId(usuarioId);
         alvo.setAtivo(!alvo.isAtivo());
         repository.salvar(alvo);
@@ -79,15 +90,18 @@ public class UsuarioService {
 
     public void remover(String coordenadorId, String usuarioId) {
         Usuario coord = buscarPorId(coordenadorId);
-        if (!"COORDENADOR".equals(coord.getTipo())) throw new AcessoNegadoException();
+        if (!"COORDENADOR".equals(coord.getTipo()))
+            throw new AcessoNegadoException();
         repository.remover(usuarioId);
     }
 
     public Usuario atualizar(String id, String nome, String email) {
         Usuario u = buscarPorId(id);
-        if (nome != null) u.setNome(nome);
+        if (nome != null)
+            u.setNome(nome);
         if (email != null && !email.equals(u.getEmail())) {
-            if (repository.existeEmail(email)) throw new SistemaException("E-mail já em uso.", 400);
+            if (repository.existeEmail(email))
+                throw new SistemaException("E-mail já em uso.", 400);
             u.setEmail(email);
         }
         repository.salvar(u);
