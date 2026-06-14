@@ -1,8 +1,5 @@
 package com.pesquisa.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-@JsonDeserialize(using = UsuarioDeserializer.class)
 public abstract class Usuario {
     private String id;
     private String nome;

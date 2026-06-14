@@ -23,14 +23,9 @@ public class UsuarioController implements HttpHandler {
         try {
             String method = ex.getRequestMethod();
             String[] parts = HttpUtil.pathParts(ex);
-            // /api/usuarios
-            // /api/usuarios/login
-            // /api/usuarios/{id}
-            // /api/usuarios/{id}/ativar
-            // /api/usuarios/{id}/remover (DELETE)
-
+            
             if ("POST".equals(method) && parts.length == 2) {
-                // Cadastro
+                
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 Usuario u = service.cadastrar(
                     (String) body.get("tipo"),
@@ -40,7 +35,7 @@ public class UsuarioController implements HttpHandler {
                     (String) body.getOrDefault("extra1", ""),
                     (String) body.getOrDefault("extra2", "")
                 );
-                // Não retorna a senha
+               
                 u.setSenha(null);
                 HttpUtil.responder(ex, 201, u);
             } else if ("POST".equals(method) && parts.length == 3 && "login".equals(parts[2])) {

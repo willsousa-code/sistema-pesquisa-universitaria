@@ -86,7 +86,7 @@ public class ProjetoService {
         }
         p.getSolicitacoesPendentes().add(alunoId);
         projetoRepo.salvar(p);
-        // Notifica o orientador
+
         notificacaoService.notificarUsuario(p.getOrientadorId(),
             "Nova solicitação de participação no projeto \"" + p.getTitulo() + "\".", "SOLICITACAO");
     }
@@ -106,7 +106,6 @@ public class ProjetoService {
         p.getParticipantes().add(alunoId);
         projetoRepo.salvar(p);
 
-        // Atualiza lista do aluno
         usuarioRepo.buscarPorId(alunoId).ifPresent(u -> {
             if (u instanceof Aluno) {
                 Aluno a = (Aluno) u;
@@ -197,7 +196,6 @@ public class ProjetoService {
         return projetoRepo.listarPorOrientador(orientadorId);
     }
 
-    // Estatísticas (Relatoravel via método direto)
     public Map<String, Object> gerarEstatisticas() {
         List<Projeto> todos = projetoRepo.listarTodos();
         Map<String, Long> porArea = todos.stream()

@@ -16,26 +16,22 @@ public class Main {
     public static final int PORTA = 8080;
 
     public static void main(String[] args) throws Exception {
-        // Configuração do Jackson
+        
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         HttpUtil.setMapper(mapper);
 
-        // Repositórios
         UsuarioRepository usuarioRepo = new UsuarioRepository(mapper);
         ProjetoRepository projetoRepo = new ProjetoRepository(mapper);
         NotificacaoRepository notificacaoRepo = new NotificacaoRepository(mapper);
 
-        // Singleton NotificacaoService
         NotificacaoService notifService = NotificacaoService.getInstancia();
         notifService.inicializar(notificacaoRepo, usuarioRepo);
 
-        // Serviços
         UsuarioService usuarioService = new UsuarioService(usuarioRepo);
         ProjetoService projetoService = new ProjetoService(projetoRepo, usuarioRepo, notifService);
 
-        // Servidor HTTP
         HttpServer server = HttpServer.create(new InetSocketAddress(PORTA), 0);
         server.createContext("/api/usuarios", new UsuarioController(usuarioService));
         server.createContext("/api/projetos", new ProjetoController(projetoService));

@@ -19,7 +19,6 @@ public class Projeto {
     private List<Relatorio> relatorios;
     private List<String> solicitacoesPendentes;
 
-    // Constante estática
     public static final int MAX_VAGAS = 20;
 
     public Projeto() {
@@ -52,7 +51,6 @@ public class Projeto {
         return getVagasDisponiveis() > 0;
     }
 
-    // Getters e Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 

@@ -1,26 +1,16 @@
 {
-  "6c39e8d4-fce1-440e-81e4-018fedd088dd" : {
-    "id" : "6c39e8d4-fce1-440e-81e4-018fedd088dd",
-    "nome" : "wellz",
-    "email" : "well@email.com",
-    "senha" : null,
-    "ativo" : true,
-    "tipo" : "COORDENADOR",
-    "siape" : "0001",
-    "perfil" : "Coordenador | SIAPE: 0001"
-  },
-  "9c809f1b-12c8-4c1a-b98a-b9f5d30e6376" : {
-    "id" : "9c809f1b-12c8-4c1a-b98a-b9f5d30e6376",
-    "nome" : "wellz",
-    "email" : "well2@email.com",
-    "senha" : "123456",
+  "08abafe3-488e-4fbc-809b-193a8a29cd5b" : {
+    "id" : "08abafe3-488e-4fbc-809b-193a8a29cd5b",
+    "nome" : "will",
+    "email" : "will2@email.com",
+    "senha" : "12345",
     "ativo" : true,
     "tipo" : "ALUNO",
-    "matricula" : "0005",
-    "curso" : "teste",
+    "matricula" : "0001",
+    "curso" : "cc",
     "projetosInscritos" : [ ],
     "historicoProjetos" : [ ],
     "areasInteresse" : [ ],
-    "perfil" : "Aluno | Matrícula: 0005 | Curso: teste"
+    "perfil" : "Aluno | Matrícula: 0001 | Curso: cc"
   }
 }

@@ -57,5 +57,5 @@ echo.
 echo  Pressione Ctrl+C para encerrar.
 echo ===============================================
 
-java -jar target\sistema-pesquisa-1.0-jar-with-dependencies.jar
+java -Duser.dir="%~dp0backend" -jar target\sistema-pesquisa-1.0-jar-with-dependencies.jar
 pause
