@@ -24,20 +24,25 @@ public class UsuarioController implements HttpHandler {
             String method = ex.getRequestMethod();
             String[] parts = HttpUtil.pathParts(ex);
             
-            if ("POST".equals(method) && parts.length == 2) {
-                
-                Map<String, Object> body = HttpUtil.lerJson(ex);
-                Usuario u = service.cadastrar(
-                    (String) body.get("tipo"),
-                    (String) body.get("nome"),
-                    (String) body.get("email"),
-                    (String) body.get("senha"),
-                    (String) body.getOrDefault("extra1", ""),
-                    (String) body.getOrDefault("extra2", "")
-                );
-               
-                u.setSenha(null);
-                HttpUtil.responder(ex, 201, u);
+if ("POST".equals(method) && parts.length == 2) {
+
+    Map<String, Object> body = HttpUtil.lerJson(ex);
+    Usuario u = service.cadastrar(
+        (String) body.get("tipo"),
+        (String) body.get("nome"),
+        (String) body.get("email"),
+        (String) body.get("senha"),
+        (String) body.getOrDefault("extra1", ""),
+        (String) body.getOrDefault("extra2", "")
+    );
+
+    Map<String, Object> resposta = new java.util.LinkedHashMap<>();
+    resposta.put("id", u.getId());
+    resposta.put("nome", u.getNome());
+    resposta.put("email", u.getEmail());
+    resposta.put("tipo", u.getTipo());
+    resposta.put("ativo", u.isAtivo());
+    HttpUtil.responder(ex, 201, resposta);
             } else if ("POST".equals(method) && parts.length == 3 && "login".equals(parts[2])) {
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 Usuario u = service.login((String) body.get("email"), (String) body.get("senha"));
