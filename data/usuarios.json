@@ -1,0 +1,30 @@
+{
+  "579d7e07-818f-4524-9711-b2ce793718ec" : {
+    "id" : "579d7e07-818f-4524-9711-b2ce793718ec",
+    "nome" : "musi",
+    "email" : "musi@gmail.com",
+    "senha" : "123456",
+    "ativo" : true,
+    "tipo" : "ALUNO",
+    "matricula" : "4r",
+    "curso" : "cc",
+    "projetosInscritos" : [ ],
+    "historicoProjetos" : [ ],
+    "areasInteresse" : [ ],
+    "perfil" : "Aluno | Matrícula: 4r | Curso: cc"
+  },
+  "bec5704d-037a-46ae-90ba-cfa7e0bb8c24" : {
+    "id" : "bec5704d-037a-46ae-90ba-cfa7e0bb8c24",
+    "nome" : "paumares",
+    "email" : "paumares@gmail.com",
+    "senha" : "123456",
+    "ativo" : true,
+    "tipo" : "ALUNO",
+    "matricula" : "3232323",
+    "curso" : "ff",
+    "projetosInscritos" : [ ],
+    "historicoProjetos" : [ ],
+    "areasInteresse" : [ ],
+    "perfil" : "Aluno | Matrícula: 3232323 | Curso: ff"
+  }
+}
