@@ -46,27 +46,22 @@ if ("POST".equals(method) && parts.length == 2) {
             } else if ("POST".equals(method) && parts.length == 3 && "login".equals(parts[2])) {
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 Usuario u = service.login((String) body.get("email"), (String) body.get("senha"));
-                u.setSenha(null);
-                HttpUtil.responder(ex, 200, u);
+                responderSemSenha(ex, 200, u);
             } else if ("GET".equals(method) && parts.length == 2) {
                 var lista = service.listarTodos();
-                lista.forEach(u -> u.setSenha(null));
-                HttpUtil.responder(ex, 200, lista);
+                responderListaSemSenha(ex, 200, lista);
             } else if ("GET".equals(method) && parts.length == 3) {
                 Usuario u = service.buscarPorId(parts[2]);
-                u.setSenha(null);
-                HttpUtil.responder(ex, 200, u);
+                responderSemSenha(ex, 200, u);
             } else if ("PUT".equals(method) && parts.length == 3) {
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 Usuario u = service.atualizar(parts[2],
                     (String) body.get("nome"), (String) body.get("email"));
-                u.setSenha(null);
-                HttpUtil.responder(ex, 200, u);
+                responderSemSenha(ex, 200, u);
             } else if ("POST".equals(method) && parts.length == 4 && "ativar".equals(parts[3])) {
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 Usuario u = service.ativarDesativar((String) body.get("coordenadorId"), parts[2]);
-                u.setSenha(null);
-                HttpUtil.responder(ex, 200, u);
+                responderSemSenha(ex, 200, u);
             } else if ("DELETE".equals(method) && parts.length == 3) {
                 Map<String, Object> body = HttpUtil.lerJson(ex);
                 service.remover((String) body.get("coordenadorId"), parts[2]);
@@ -78,6 +73,27 @@ if ("POST".equals(method) && parts.length == 2) {
             HttpUtil.responderErro(ex, e.getStatusCode(), e.getMessage());
         } catch (Exception e) {
             HttpUtil.responderErro(ex, 500, "Erro interno: " + e.getMessage());
+        }
+    }
+
+    private void responderSemSenha(HttpExchange ex, int status, Usuario u) throws IOException {
+        String senhaReal = u.getSenha();
+        try {
+            u.setSenha(null);
+            HttpUtil.responder(ex, status, u);
+        } finally {
+            u.setSenha(senhaReal);
+        }
+    }
+
+    private void responderListaSemSenha(HttpExchange ex, int status, java.util.List<Usuario> lista) throws IOException {
+        java.util.Map<Usuario, String> senhasReais = new java.util.HashMap<>();
+        lista.forEach(u -> senhasReais.put(u, u.getSenha()));
+        try {
+            lista.forEach(u -> u.setSenha(null));
+            HttpUtil.responder(ex, status, lista);
+        } finally {
+            lista.forEach(u -> u.setSenha(senhasReais.get(u)));
         }
     }
 }
