@@ -1,30 +1,38 @@
 {
-  "579d7e07-818f-4524-9711-b2ce793718ec" : {
-    "id" : "579d7e07-818f-4524-9711-b2ce793718ec",
-    "nome" : "musi",
-    "email" : "musi@gmail.com",
+  "9b1149bc-35a1-44c9-8e16-23bc9c49c4e4" : {
+    "id" : "9b1149bc-35a1-44c9-8e16-23bc9c49c4e4",
+    "nome" : "hg",
+    "email" : "hg@gmail.com",
     "senha" : "123456",
     "ativo" : true,
     "tipo" : "ALUNO",
-    "matricula" : "4r",
-    "curso" : "cc",
+    "matricula" : "2",
+    "curso" : "3",
     "projetosInscritos" : [ ],
     "historicoProjetos" : [ ],
     "areasInteresse" : [ ],
-    "perfil" : "Aluno | Matrícula: 4r | Curso: cc"
+    "perfil" : "Aluno | Matrícula: 2 | Curso: 3"
   },
-  "bec5704d-037a-46ae-90ba-cfa7e0bb8c24" : {
-    "id" : "bec5704d-037a-46ae-90ba-cfa7e0bb8c24",
-    "nome" : "paumares",
-    "email" : "paumares@gmail.com",
+  "0f0ac600-1ff0-4105-88dc-9b77ff06292e" : {
+    "id" : "0f0ac600-1ff0-4105-88dc-9b77ff06292e",
+    "nome" : "hgh",
+    "email" : "hgh@gmail.com",
     "senha" : "123456",
     "ativo" : true,
-    "tipo" : "ALUNO",
-    "matricula" : "3232323",
-    "curso" : "ff",
-    "projetosInscritos" : [ ],
-    "historicoProjetos" : [ ],
-    "areasInteresse" : [ ],
-    "perfil" : "Aluno | Matrícula: 3232323 | Curso: ff"
+    "tipo" : "PROFESSOR",
+    "departamento" : "3",
+    "titulacao" : "5",
+    "projetosCriados" : [ ],
+    "perfil" : "Professor | Depto: 3 | 5"
+  },
+  "82cbabe7-d9ae-48d8-8ee9-998c1bed1f86" : {
+    "id" : "82cbabe7-d9ae-48d8-8ee9-998c1bed1f86",
+    "nome" : "hght",
+    "email" : "hght@gmail.com",
+    "senha" : "123456",
+    "ativo" : true,
+    "tipo" : "COORDENADOR",
+    "siape" : "3",
+    "perfil" : "Coordenador | SIAPE: 3"
   }
 }
